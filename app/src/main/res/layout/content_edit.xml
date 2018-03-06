@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.trendmicro.materialdesign_note.act.EditActivity"
+    tools:showIn="@layout/app_bar_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="2dp">
+        <LinearLayout
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/shape_signal"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="标题："
+                    android:textSize="16dp"/>
+
+                <EditText
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="标题"
+                    android:textColor="#000"
+                    android:textSize="16dp"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="密码："/>
+                <EditText
+                    android:id="@+id/passWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="密码"
+                    android:textColor="#000"
+                    android:textSize="16dp"
+                    />
+                <CheckBox
+                    android:id="@+id/eye"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_watch_psw_selector"
+                    android:checked="true"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/memoBack"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/table_retweet_background">
+
+                <EditText
+                android:id="@+id/memo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="关于密码的备忘信息"
+                android:textColor="#b1000000"
+                android:textSize="16dp"
+                />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:textColor="@color/light_grey"
+                android:visibility="visible"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                tools:text="创建于2016.01.01 00:00"/>
+            <Button
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_corner"
+                android:text="Save"
+                android:textSize="22dp"
+                android:textColor="#fff"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+</android.support.v7.widget.CardView>

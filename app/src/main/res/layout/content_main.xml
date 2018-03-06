@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.trendmicro.materialdesign_note.act.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+
+    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout
+        android:id="@+id/exception"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:drawablePadding="15dp"
+            android:drawableTop="@mipmap/ic_exception"
+            android:gravity="center"
+            android:text="主人，您还没添加任何记录哦～～"
+            android:textColor="@color/text_color"/>
+    </RelativeLayout>
+
+</RelativeLayout>

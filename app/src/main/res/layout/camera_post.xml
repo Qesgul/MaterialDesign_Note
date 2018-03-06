@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_signal">
+
+    <LinearLayout
+        android:id="@+id/lin_first"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_color"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="@string/create_activity_welcome"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imt_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/lin_first"
+        android:layout_centerHorizontal="true"/>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:background="@drawable/shape_corner"
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="拍  照"
+            android:textSize="25dp"/>
+        <TextView
+            android:layout_width="8dp"
+            android:layout_height="match_parent"/>
+
+        <Button
+            android:background="@drawable/shape_corner"
+            android:id="@+id/photo_save"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="保存"
+            android:textSize="25dp"/>
+    </LinearLayout>
+
+</RelativeLayout>
