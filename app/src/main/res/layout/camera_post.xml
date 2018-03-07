@@ -34,33 +34,34 @@
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="80dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <Button
+            android:layout_marginRight="12dp"
             android:background="@drawable/shape_corner"
             android:id="@+id/photo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="拍  照"
-            android:textSize="25dp"/>
-        <TextView
-            android:layout_width="8dp"
-            android:layout_height="match_parent"/>
+            android:textSize="25dp"
+            android:textColor="@color/white"/>
 
         <Button
+            android:layout_marginLeft="12dp"
             android:background="@drawable/shape_corner"
             android:id="@+id/photo_save"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="保存"
-            android:textSize="25dp"/>
+            android:textSize="25dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </RelativeLayout>
