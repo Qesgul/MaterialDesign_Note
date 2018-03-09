@@ -10,7 +10,7 @@
             android:icon="@drawable/ic_menu_send"
             android:title="Password" />
         <item
-            android:id="@+id/nav_list"
+            android:id="@+id/nav_pic"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Picture" />
     </group>

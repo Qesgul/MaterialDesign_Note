@@ -179,8 +179,9 @@ public class MainActivity extends BaseActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_pic) {
+            Intent intent=new Intent(this,PhotoViewActivity.class);
+            startActivity(intent);
         }else if (id == R.id.nav_send) {
 
         }

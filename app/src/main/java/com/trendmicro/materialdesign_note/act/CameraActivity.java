@@ -280,7 +280,7 @@ public class CameraActivity extends BaseActivity{
 			startActivity(intent);
 			finish();
 		}else {
-			showDialog("匹配失败！请重试");
+			showDialog("置信度"+score.getScore()+"匹配失败！请重试");
 			info.remove(1);
 		}
 	}

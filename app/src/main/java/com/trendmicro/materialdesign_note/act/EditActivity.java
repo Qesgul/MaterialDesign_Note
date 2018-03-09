@@ -55,7 +55,7 @@ public class EditActivity extends BaseActivity {
 	}
 
 	public void init(){
-		toolbar= findViewById(R.id.toolbar);
+		toolbar= findViewById(R.id.toolbar_edit);
 		toolbar.setNavigationOnClickListener(new NavigationListener());
 
 		title=findViewById(R.id.title);

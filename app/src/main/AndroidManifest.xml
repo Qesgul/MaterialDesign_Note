@@ -30,15 +30,8 @@
         </activity>
         <activity android:name=".act.EditActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <provider
-            android:authorities="com.trendmicro.materialdesign_note.fileProvider"
-            android:name="android.support.v4.content.FileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
+        <activity android:name=".act.PhotoViewActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -16,14 +16,27 @@
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay">
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_edit"
+                android:id="@+id/toolbar_photo"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="编辑"
+                app:title="照片"
                 app:navigationIcon="@mipmap/arrow_left"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                />
         </android.support.design.widget.AppBarLayout>
-        <include layout="@layout/content_edit"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:scrollbarStyle="outsideOverlay"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            app:spanCount="4"
+            tools:listitem="@layout/list_item_image"/>
     </LinearLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>
