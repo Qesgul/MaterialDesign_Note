@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.lzy.imagepicker.bean.ImageItem;
+import com.trendmicro.materialdesign_note.Adapter.Image;
 import com.trendmicro.materialdesign_note.Adapter.MyDatabaseHelper;
 
 import java.io.BufferedInputStream;
@@ -14,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zheng_liu on 2018/3/9.
@@ -23,9 +25,9 @@ public class FilesCopyUtils {
 
     // 目标文件夹
     static String url2 ;
-    private static final String IMAGES_NAME = "/Image";
+    private static final String IMAGES_NAME = "/.Image";
 
-    public static void PicCopy(Context context, ArrayList<ImageItem> selImageList) throws IOException {
+    public static ArrayList<Image> PicCopy(Context context, ArrayList<ImageItem> selImageList, ArrayList<Image> list) throws IOException {
         url2=PhotoBitmapUtils.getPhoneRootPath(context)+IMAGES_NAME;
         MyDatabaseHelper dbHelper= new MyDatabaseHelper(context, "Safe.db", null, 1);
         SQLiteDatabase db= dbHelper.getWritableDatabase();
@@ -36,18 +38,30 @@ public class FilesCopyUtils {
         }
         ContentValues values = new ContentValues();
         for (int i = 0; i < selImageList.size(); i++) {
+            Image item=new Image();
+            item.setName(selImageList.get(i).name);
+            item.setPath(url2+"/"+selImageList.get(i).name);
+            item.setSize(selImageList.get(i).size);
+            item.setWidth(selImageList.get(i).width);
+            item.setHeight(selImageList.get(i).height);
+            item.setMimeType(selImageList.get(i).mimeType);
+            item.setAddTime(selImageList.get(i).addTime);
+            if(!list.contains(item)){
                 String url1=selImageList.get(i).path;
                 copyFile(new File(url1),new File(url2+"/"+selImageList.get(i).name));
-            values.put("name", selImageList.get(i).name);
-            values.put("path",url2+"/"+selImageList.get(i).name);
-            values.put("size",selImageList.get(i).size);
-            values.put("width", selImageList.get(i).width);
-            values.put("height", selImageList.get(i).height);
-            values.put("mimeType", selImageList.get(i).mimeType);
-            values.put("addTime", selImageList.get(i).addTime);
-            db.insert("ImgeSafe", null, values); // 插入第一条数据
-            values.clear();
+                values.put("name", selImageList.get(i).name);
+                values.put("path",url2+"/"+selImageList.get(i).name);
+                values.put("size",selImageList.get(i).size);
+                values.put("width", selImageList.get(i).width);
+                values.put("height", selImageList.get(i).height);
+                values.put("mimeType", selImageList.get(i).mimeType);
+                values.put("addTime", selImageList.get(i).addTime);
+                db.insert("ImgeSafe", null, values); // 插入第一条数据
+                values.clear();
+                list.add(item);
+            }
         }
+        return list;
     }
     // 复制文件
     public static void copyFile(File sourceFile, File targetFile)

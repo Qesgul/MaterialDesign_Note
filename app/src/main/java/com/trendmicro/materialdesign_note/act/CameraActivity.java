@@ -276,6 +276,8 @@ public class CameraActivity extends BaseActivity{
 		Log.d("com.arcsoft", "AFR_FSDK_FacePairMatching=" + error.getCode());
 		Log.d("com.arcsoft", "Score:" + score.getScore());
 		if(score.getScore()>0.5){
+			obmp0.recycle();
+			obmp1.recycle();
 			Intent intent=new Intent(CameraActivity.this,MainActivity.class);
 			startActivity(intent);
 			finish();

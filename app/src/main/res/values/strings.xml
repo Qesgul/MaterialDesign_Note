@@ -12,4 +12,5 @@
     <string name="before_month" formatted="false">%d\u0020个月之前</string>
     <string name="before_year" formatted="false">%d\u0020年之前</string>
     <string name="create_activity_welcome">欢迎使用 云隐私系统\n第一次使用,请先保存人脸信息</string>
+
 </resources>

@@ -23,7 +23,7 @@ public class PhotoBitmapUtils {
     /**
      * 存放拍摄图片的文件夹
      */
-    private static final String FILES_NAME = "/face";
+    private static final String FILES_NAME = "/.face";
     private static final String FILES_USER_NAME = "/face_first";
     private static final String FILES_TEMP_NAME = "/face_temp";
     /**

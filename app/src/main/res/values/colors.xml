@@ -48,4 +48,6 @@
     <color name="black">#000000</color>
     <color name="red">#ffff3b30</color>
     <color name="red_pressed">#ffdd2b20</color>
+
+    <color name="transparent">#00000000</color>
 </resources>
