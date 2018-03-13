@@ -1,8 +1,11 @@
 package com.trendmicro.materialdesign_note.Utils;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.lzy.imagepicker.bean.ImageItem;
+import com.trendmicro.materialdesign_note.Adapter.MyDatabaseHelper;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -24,14 +27,26 @@ public class FilesCopyUtils {
 
     public static void PicCopy(Context context, ArrayList<ImageItem> selImageList) throws IOException {
         url2=PhotoBitmapUtils.getPhoneRootPath(context)+IMAGES_NAME;
+        MyDatabaseHelper dbHelper= new MyDatabaseHelper(context, "Safe.db", null, 1);
+        SQLiteDatabase db= dbHelper.getWritableDatabase();
         File file = new File(url2);
         // 判断文件是否已经存在，不存在则创建
         if (!file.exists()) {
             file.mkdirs();
         }
+        ContentValues values = new ContentValues();
         for (int i = 0; i < selImageList.size(); i++) {
                 String url1=selImageList.get(i).path;
                 copyFile(new File(url1),new File(url2+"/"+selImageList.get(i).name));
+            values.put("name", selImageList.get(i).name);
+            values.put("path",url2+"/"+selImageList.get(i).name);
+            values.put("size",selImageList.get(i).size);
+            values.put("width", selImageList.get(i).width);
+            values.put("height", selImageList.get(i).height);
+            values.put("mimeType", selImageList.get(i).mimeType);
+            values.put("addTime", selImageList.get(i).addTime);
+            db.insert("ImgeSafe", null, values); // 插入第一条数据
+            values.clear();
         }
     }
     // 复制文件

@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.widget.ImageView;
+
 
 import java.io.IOException;
 import java.io.InputStream;
 
 
 public class ImageUtils {
+
     public static Bitmap getImageFromAssetsFile(Context context, String fileName) {
         Bitmap image = null;
         AssetManager am = context.getResources().getAssets();

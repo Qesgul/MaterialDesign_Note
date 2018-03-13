@@ -11,15 +11,26 @@ import com.trendmicro.materialdesign_note.Utils.PhotoBitmapUtils;
 import java.io.File;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
-    public static final String DB_NAME = "passwodSafe.db";
+    public static final String DB_NAME = "Safe.db";
     public static final int VERSION = 1;
 
-    public static final String CREATE_ADDRESS = "create table Messagebook ("
+
+    public static final String CREATE_PASS= "create table PasswodSafe ("
             + "id integer primary key autoincrement, "
             + "title text, "
             + "password text, "
             + "memoInfo text, "
             + "time text) " ;
+
+    public static final String CREATE_IMAGE = "create table ImgeSafe ("
+            + "id integer primary key autoincrement, "
+            + "name text, "
+            + "path text, "
+            + "size long, "
+            + "width int, "
+            + "height int, "
+            + "mimeType text, "
+            + "addTime long) " ;
 
 
     private Context mContext;
@@ -41,7 +52,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_ADDRESS);
+        db.execSQL(CREATE_PASS);
+        db.execSQL(CREATE_IMAGE);
         Toast.makeText(mContext, "Create succeeded", Toast.LENGTH_LONG).show();
     }
 

@@ -67,7 +67,7 @@ public class EditActivity extends BaseActivity {
 		save=findViewById(R.id.save);
 		save.setOnClickListener(new SaveListener());
 
-		dbHelper = new MyDatabaseHelper(this, "Messagebook.db", null, 1);
+		dbHelper = new MyDatabaseHelper(this, "Safe.db", null, 1);
 		db = dbHelper.getWritableDatabase();
 
 		String stringEditInfo;
@@ -135,7 +135,7 @@ public class EditActivity extends BaseActivity {
 				values.put("password",message.getPassword());
 				values.put("memoInfo",message.getMemoInfo());
 				values.put("time", time.getText().toString());
-				db.insert("Messagebook", null, values); // 插入第一条数据
+				db.insert("PasswodSafe", null, values); // 插入第一条数据
 				values.clear();
 				message.setTime(time.getText().toString());
 				REQUEST_CODE=200;
@@ -143,7 +143,7 @@ public class EditActivity extends BaseActivity {
 				values.put("title", message.getTitle());
 				values.put("password",message.getPassword());
 				values.put("memoInfo",message.getMemoInfo());
-				db.update("Messagebook", values, "time = ?", new String[] { message.getTime() });
+				db.update("PasswodSafe", values, "time = ?", new String[] { message.getTime() });
 				values.clear();
 				REQUEST_CODE=100;
 			}

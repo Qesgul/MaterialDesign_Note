@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity
     }
     public void init(){
 
-        dbHelper = new MyDatabaseHelper(this, "Messagebook.db", null, 1);
+        dbHelper = new MyDatabaseHelper(this, "Safe.db", null, 1);
         db = dbHelper.getWritableDatabase();
         Toolbar toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity
     }
 
     private void initMessage() {
-        Cursor cursor = db.query("Messagebook", null, null, null, null, null, null);
+        Cursor cursor = db.query("PasswodSafe", null, null, null, null, null, null);
         int i=0;
         if (cursor.moveToFirst()) {
             do {
@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity
                 // 任何操作必须先关闭菜单，否则可能出现Item菜单打开状态错乱。
                 menuBridge.closeMenu();
                 int adapterPosition = menuBridge.getAdapterPosition(); // RecyclerView的Item的position。
-                db.delete("Messagebook","time = ?",new String[]{MsgList.get(adapterPosition).getTime()});
+                db.delete("PasswodSafe","time = ?",new String[]{MsgList.get(adapterPosition).getTime()});
                 MsgList.remove(adapterPosition);
                 msgAdapter.notifyItemChanged(adapterPosition);
             }
