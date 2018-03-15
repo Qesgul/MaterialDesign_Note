@@ -57,7 +57,6 @@ public class PhotoViewActivity extends BaseActivity {
     }
     @Override
     protected void onDestroy() {
-        dialog.dismiss();
         super.onDestroy();
     }
 
