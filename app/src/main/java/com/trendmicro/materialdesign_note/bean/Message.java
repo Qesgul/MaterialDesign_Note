@@ -1,4 +1,4 @@
-package com.trendmicro.materialdesign_note.Adapter;
+package com.trendmicro.materialdesign_note.bean;
 
 
 public class Message {
