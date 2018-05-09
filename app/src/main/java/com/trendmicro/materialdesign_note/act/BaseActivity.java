@@ -1,22 +1,14 @@
 package com.trendmicro.materialdesign_note.act;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-
-import com.trendmicro.materialdesign_note.R;
 import com.trendmicro.materialdesign_note.Utils.RSAUtils;
-
-import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-
 import javax.crypto.Cipher;
 
 /**
@@ -43,17 +35,17 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = this;
         preference = getSharedPreferences("User", Context.MODE_PRIVATE);
-        flag=preference.getBoolean("firststart", true);
+        flag = preference.getBoolean("firststart", true);
         try {
-            Key1= RSAUtils.getPublicKey(preference.getString("PublicKey", ""));
-            Key2= RSAUtils.getPrivateKey(preference.getString("PrivateKey", ""));
+            Key1 = RSAUtils.getPublicKey(preference.getString("PublicKey", ""));
+            Key2 = RSAUtils.getPrivateKey(preference.getString("PrivateKey", ""));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    protected void onResme(){
+    protected void onResme() {
         super.onResume();
 
     }

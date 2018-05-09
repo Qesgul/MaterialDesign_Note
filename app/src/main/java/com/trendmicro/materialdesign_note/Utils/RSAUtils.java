@@ -10,15 +10,15 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-
 import javax.crypto.Cipher;
 
 
 public class RSAUtils {
-    private String String_publicKey,String_privateKey;
+    private String String_publicKey, String_privateKey;
     private Cipher cipher;
     private PublicKey Key1;
     private PrivateKey Key2;
+
     /**
      * 得到公钥
      */
@@ -32,6 +32,7 @@ public class RSAUtils {
         PublicKey publicKey = keyFactory.generatePublic(keySpec);
         return publicKey;
     }
+
     /**
      * 得到私钥
      */
@@ -45,15 +46,17 @@ public class RSAUtils {
         PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
         return privateKey;
     }
+
     /**
      * key的格式转换(key->string)
      */
     public static String getKeyString(Key key) throws Exception {
         byte[] keyBytes = key.getEncoded();
-//        String s = (new BASE64Encoder()).encode(keyBytes);
+        //        String s = (new BASE64Encoder()).encode(keyBytes);
         String s = Base64Utils.encode(keyBytes);
         return s;
     }
+
     /**
      * 生成公私钥
      */
@@ -73,44 +76,47 @@ public class RSAUtils {
 
         String privateKeyString = getKeyString(privateKey);
 
-        String s=publicKeyString+"#"+privateKeyString;
+        String s = publicKeyString + "#" + privateKeyString;
 
         return s;
     }
+
     /**
      * 得到公私钥
      */
     public void GetKey() throws Exception {
 
-        String s= RSAUtils.CreateKey();
+        String s = RSAUtils.CreateKey();
         String[] key = s.split("#");
         String_publicKey = key[0];
         String_privateKey = key[1];
-        cipher= Cipher.getInstance("RSA/None/PKCS1Padding");
+        cipher = Cipher.getInstance("RSA/None/PKCS1Padding");
         //通过密钥字符串得到密钥
         Key1 = RSAUtils.getPublicKey(String_publicKey);
         Key2 = RSAUtils.getPrivateKey(String_privateKey);
     }
+
     /**
      * 公钥加密
      */
-    public static String encryptData(String data,PublicKey key) throws Exception {
-        byte[] plainText =data.getBytes();
+    public static String encryptData(String data, PublicKey key) throws Exception {
+        byte[] plainText = data.getBytes();
         //加密
-        Cipher cipher= Cipher.getInstance("RSA/None/PKCS1Padding");
+        Cipher cipher = Cipher.getInstance("RSA/None/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] enBytes = cipher.doFinal(plainText);
         String afterencrypt = Base64Utils.encode(enBytes);
         return afterencrypt;
     }
+
     /**
      * 私钥解密
      */
-    public static String decryptData(String encryptContent,PrivateKey key) throws Exception {
+    public static String decryptData(String encryptContent, PrivateKey key) throws Exception {
         //解密
-        Cipher cipher= Cipher.getInstance("RSA/None/PKCS1Padding");
-        cipher.init(Cipher.DECRYPT_MODE,key);
-        byte[] midBytes= Base64Utils.decode(encryptContent);
+        Cipher cipher = Cipher.getInstance("RSA/None/PKCS1Padding");
+        cipher.init(Cipher.DECRYPT_MODE, key);
+        byte[] midBytes = Base64Utils.decode(encryptContent);
         byte[] deBytes = cipher.doFinal(midBytes);
         String s = new String(deBytes);
         return s;

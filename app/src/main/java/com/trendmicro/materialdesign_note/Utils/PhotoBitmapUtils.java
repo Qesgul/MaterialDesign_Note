@@ -6,13 +6,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.os.Environment;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by zheng_liu on 2018/2/2.
@@ -62,16 +58,16 @@ public class PhotoBitmapUtils {
      *
      * @return 存储的根路径+图片名称
      */
-    public static String getPhotoFileName(Context context,boolean flag) {
-        File file = new File(getPhoneRootPath(context)+FILES_NAME);
+    public static String getPhotoFileName(Context context, boolean flag) {
+        File file = new File(getPhoneRootPath(context) + FILES_NAME);
         // 判断文件是否已经存在，不存在则创建
         if (!file.exists()) {
             file.mkdirs();
         }
         String photoName;
-        if(flag){
+        if (flag) {
             photoName = "/" + FILES_USER_NAME + IMAGE_TYPE;
-        }else {
+        } else {
             photoName = "/" + FILES_TEMP_NAME + IMAGE_TYPE;
         }
         return file + photoName;
@@ -86,7 +82,7 @@ public class PhotoBitmapUtils {
      */
     public static String savePhotoToSD(Bitmap mbitmap, Context context) {
         FileOutputStream outStream = null;
-        String fileName = getPhotoFileName(context,false);
+        String fileName = getPhotoFileName(context, false);
         try {
             outStream = new FileOutputStream(fileName);
             // 把数据写入文件，100表示不压缩
@@ -127,6 +123,7 @@ public class PhotoBitmapUtils {
 
     /**
      * 处理旋转后的图片
+     *
      * @param originpath 原图路径
      * @param context 上下文
      * @return 返回修复完毕后的图片路径
@@ -137,7 +134,8 @@ public class PhotoBitmapUtils {
         int angle = readPictureDegree(originpath);
 
         // 把原图压缩后得到Bitmap对象
-        Bitmap bmp = getCompressPhoto(originpath);;
+        Bitmap bmp = getCompressPhoto(originpath);
+        ;
 
         // 修复图片被旋转的角度
         Bitmap bitmap = rotaingImageView(angle, bmp);
@@ -157,7 +155,8 @@ public class PhotoBitmapUtils {
         int degree = 0;
         try {
             ExifInterface exifInterface = new ExifInterface(path);
-            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+            int orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL);
             switch (orientation) {
                 case ExifInterface.ORIENTATION_ROTATE_90:
                     degree = 90;
@@ -177,6 +176,7 @@ public class PhotoBitmapUtils {
 
     /**
      * 旋转图片
+     *
      * @param angle 被旋转角度
      * @param bitmap 图片对象
      * @return 旋转后的图片
@@ -188,7 +188,9 @@ public class PhotoBitmapUtils {
         matrix.postRotate(angle);
         try {
             // 将原始图片按照旋转矩阵进行旋转，并得到新的图片
-            returnBm = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+            returnBm =
+                    Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix,
+                            true);
         } catch (OutOfMemoryError e) {
         }
         if (returnBm == null) {

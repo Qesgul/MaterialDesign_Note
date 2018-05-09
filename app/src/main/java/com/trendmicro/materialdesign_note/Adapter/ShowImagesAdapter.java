@@ -4,7 +4,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ public class ShowImagesAdapter extends PagerAdapter {
     private List<String> titles;
     private int position;
 
-    public ShowImagesAdapter(List<View> views, List<String> titles,int position) {
+    public ShowImagesAdapter(List<View> views, List<String> titles, int position) {
         this.views = views;
         this.titles = titles;
         this.position = position;

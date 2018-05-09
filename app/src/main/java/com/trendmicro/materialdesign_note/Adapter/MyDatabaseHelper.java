@@ -3,11 +3,8 @@ package com.trendmicro.materialdesign_note.Adapter;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
 import android.widget.Toast;
-
 import com.trendmicro.materialdesign_note.Utils.PhotoBitmapUtils;
-
 import java.io.File;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
@@ -15,12 +12,12 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public static final int VERSION = 1;
 
 
-    public static final String CREATE_PASS= "create table PasswodSafe ("
+    public static final String CREATE_PASS = "create table PasswodSafe ("
             + "id integer primary key autoincrement, "
             + "title text, "
             + "password text, "
             + "memoInfo text, "
-            + "time text) " ;
+            + "time text) ";
 
     public static final String CREATE_IMAGE = "create table ImgeSafe ("
             + "id integer primary key autoincrement, "
@@ -30,23 +27,24 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             + "width int, "
             + "height int, "
             + "mimeType text, "
-            + "addTime long) " ;
+            + "addTime long) ";
 
 
     private Context mContext;
 
     public MyDatabaseHelper(Context context, String name,
-							SQLiteDatabase.CursorFactory factory, int version) {
+            SQLiteDatabase.CursorFactory factory, int version) {
         super(context, getMyDatabaseName(context), factory, version);
         mContext = context;
     }
-    private static String getMyDatabaseName(Context context){
-        String dbPath= PhotoBitmapUtils.getPhoneRootPath(context);
+
+    private static String getMyDatabaseName(Context context) {
+        String dbPath = PhotoBitmapUtils.getPhoneRootPath(context);
         File dbp = new File(dbPath);
-        if(!dbp.exists()){
+        if (!dbp.exists()) {
             dbp.mkdirs();
         }
-        String databasename = dbPath + "/database/"+DB_NAME;
+        String databasename = dbPath + "/database/" + DB_NAME;
         return databasename;
     }
 

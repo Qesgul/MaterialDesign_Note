@@ -11,13 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Toast;
-
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
-import com.lzy.imagepicker.ui.ImagePreviewActivity;
 import com.lzy.imagepicker.view.CropImageView;
-import com.trendmicro.materialdesign_note.Adapter.Image;
 import com.trendmicro.materialdesign_note.Adapter.ImageAdapter;
 import com.trendmicro.materialdesign_note.Adapter.MyDatabaseHelper;
 import com.trendmicro.materialdesign_note.R;
@@ -25,10 +22,9 @@ import com.trendmicro.materialdesign_note.Utils.FilesCopyUtils;
 import com.trendmicro.materialdesign_note.Utils.GlideImageLoader;
 import com.trendmicro.materialdesign_note.Utils.PhotoBitmapUtils;
 import com.trendmicro.materialdesign_note.base.Config;
+import com.trendmicro.materialdesign_note.bean.Image;
 import com.trendmicro.materialdesign_note.component.ShowImagesDialog;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by zheng_liu on 2018/3/8.
@@ -37,13 +33,13 @@ import java.util.List;
 public class PhotoViewActivity extends BaseActivity {
     public static final int IMAGE_ITEM_ADD = 0;
     public static final int REQUEST_CODE_SELECT = 100;
-    private Handler handler=new Handler(); //在主线程中创建handler
+    private Handler handler = new Handler(); //在主线程中创建handler
 
     private ImageAdapter adapter;
     private int maxImgCount = 60;             //允许选择图片最大数
     private MyDatabaseHelper dbHelper;
     private SQLiteDatabase db;
-    private ArrayList<Image> List=new ArrayList<>();
+    private ArrayList<Image> List = new ArrayList<>();
     private RecyclerView recyclerView;
     private Dialog dialog;
 
@@ -55,6 +51,7 @@ public class PhotoViewActivity extends BaseActivity {
         initImagePicker();
         initWidget();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -85,15 +82,16 @@ public class PhotoViewActivity extends BaseActivity {
             public void onItemClick(View view, int position) {
                 switch (position) {
                     case IMAGE_ITEM_ADD:
-                        Intent intent1 = new Intent(PhotoViewActivity.this, ImageGridActivity.class);
-                                /* 如果需要进入选择的时候显示已经选中的图片，
-                                 * 详情请查看ImagePickerActivity
-                                 * */
-//                              intent1.putExtra(ImageGridActivity.EXTRAS_IMAGES,images);
+                        Intent intent1 =
+                                new Intent(PhotoViewActivity.this, ImageGridActivity.class);
+                        /* 如果需要进入选择的时候显示已经选中的图片，
+                         * 详情请查看ImagePickerActivity
+                         * */
+                        //                              intent1.putExtra(ImageGridActivity.EXTRAS_IMAGES,images);
                         startActivityForResult(intent1, REQUEST_CODE_SELECT);
                         break;
                     default:
-                        dialog=new ShowImagesDialog(PhotoViewActivity.this, List,position);
+                        dialog = new ShowImagesDialog(PhotoViewActivity.this, List, position);
                         dialog.show();
 
                         break;
@@ -107,15 +105,15 @@ public class PhotoViewActivity extends BaseActivity {
     }
 
     private void initMessage() {
-        Image fitstItem=new Image();
+        Image fitstItem = new Image();
         fitstItem.setName("first");
-        fitstItem.setPath(PhotoBitmapUtils.getPhoneRootPath(context)+"/face/face_first");
+        fitstItem.setPath(PhotoBitmapUtils.getPhoneRootPath(context) + "/face/face_first");
         List.add(fitstItem);
         Cursor cursor = db.query("ImgeSafe", null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
                 // 遍历Cursor对象，取出数据并打印
-                Image item=new Image();
+                Image item = new Image();
                 item.setName(cursor.getString(cursor.getColumnIndex("name")));
                 item.setPath(cursor.getString(cursor.getColumnIndex("path")));
                 item.setSize(cursor.getLong(cursor.getColumnIndex("size")));
@@ -137,17 +135,20 @@ public class PhotoViewActivity extends BaseActivity {
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             //添加图片返回
             if (data != null && requestCode == REQUEST_CODE_SELECT) {
-                images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                images = (ArrayList<ImageItem>) data.getSerializableExtra(
+                        ImagePicker.EXTRA_RESULT_ITEMS);
                 if (images != null) {
-                    Toast.makeText(PhotoViewActivity.this,"start",Toast.LENGTH_SHORT).show();
-                    new Thread(){//创建一个新的线程
-                        public void run(){
+                    Toast.makeText(PhotoViewActivity.this, "start", Toast.LENGTH_SHORT).show();
+                    new Thread() {//创建一个新的线程
+                        public void run() {
                             try {
-                                List=FilesCopyUtils.PicCopy(getApplicationContext(),images,List);
+                                List = FilesCopyUtils.PicCopy(getApplicationContext(), images,
+                                        List);
                                 handler.post(new Runnable() {
                                     public void run() {
                                         adapter.notifyDataSetChanged();
-                                        Toast.makeText(PhotoViewActivity.this,"success",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PhotoViewActivity.this, "success",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
@@ -160,6 +161,7 @@ public class PhotoViewActivity extends BaseActivity {
             }
         }
     }
+
     /**
      * 获取当前设备的屏幕密度等基本参数
      */

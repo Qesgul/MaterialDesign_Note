@@ -10,7 +10,7 @@ import android.view.MotionEvent;
  */
 public class ShowImagesViewPager extends ViewPager {
     public ShowImagesViewPager(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public ShowImagesViewPager(Context context, AttributeSet attrs) {
